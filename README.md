@@ -40,3 +40,29 @@ def home():
 اگه توی آپی که تعریف کردیم اون پارامتر خاص رو نزاریم و یکی پارامتر اضافه بزاریم داخل تابع میتونیم از کوئری پارامتر ها استفاده کنیم 
 میتونیم برای این پارامتر ها مقدار دیفالت بزاریم 
 # request body
+این برای وقتی هست که پارامتر هاس ما خیلی زیاد هستن 
+برای اینکه متغیر های زیادی رو خواستیم وارد کنیم از روش زیر استفاده میکنیم 
+```
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+
+class Item(BaseModel):
+    name: str
+    description: str | None = None
+    price: float
+    tax: float | None = None
+
+
+app = FastAPI()
+
+
+@app.post("/items/")
+async def create_item(item: Item):
+    return item
+
+```
+
+# query path 
+برای محدودیت گذاشتن هست
+با پای دانتیک میتونیم متغیر ها رو بنویسیم 
